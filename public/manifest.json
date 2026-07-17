@@ -1,0 +1,29 @@
+{
+  "name": "Depanno",
+  "short_name": "Depanno",
+  "description": "L'IA qui diagnostique vos problèmes et vous protège des devis abusifs",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#6941C6",
+  "orientation": "portrait-primary",
+  "lang": "fr",
+  "categories": ["utilities", "productivity"],
+  "icons": [
+    {
+      "src": "/icon-depanno.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-depanno.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [],
+  "related_applications": [],
+  "prefer_related_applications": false
+}

@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/icon-depanno.png" />
+    <link rel="apple-touch-icon" href="/icon-depanno.png" />
+
+    <!-- Viewport & PWA display -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Depanno" />
+
+    <!-- Theme color -->
+    <meta name="theme-color" content="#6941C6" />
+    <meta name="msapplication-navbutton-color" content="#6941C6" />
+    <meta name="msapplication-TileColor" content="#1A1523" />
+
+    <!-- SEO -->
+    <title>Depanno — Diagnostics IA pour vos réparations</title>
+    <meta name="description" content="Prenez une photo de votre problème. Depanno l'analyse en 3 minutes, estime le vrai prix et vous protège des devis abusifs." />
+    <meta name="keywords" content="diagnostic réparation, devis artisan, arnaque plombier, guide DIY, IA réparation" />
+    <meta name="author" content="Depanno" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph / Partage réseaux sociaux -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Depanno — Ne payez plus trop cher pour vos réparations" />
+    <meta property="og:description" content="L'IA qui diagnostique vos problèmes en 3 minutes et vous protège des devis abusifs." />
+    <meta property="og:image" content="/og-image.png" />
+    <meta property="og:url" content="https://depanno.app" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:site_name" content="Depanno" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Depanno — Diagnostics IA pour vos réparations" />
+    <meta name="twitter:description" content="Prenez une photo. On vous dit quoi faire et combien ça doit coûter." />
+    <meta name="twitter:image" content="/og-image.png" />
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json" />
+
+    <!-- Preconnect pour performances -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@600;700&display=swap" rel="stylesheet" />
+
+    <!-- Splash screen background (avant React) -->
+    <style>
+      html, body { margin: 0; padding: 0; background: #F7F4FD; }
+      #root { min-height: 100vh; }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

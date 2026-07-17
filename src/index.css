@@ -1,0 +1,316 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@600;700&display=swap');
+
+/* ─── CHARTE GRAPHIQUE ───────────────────────────── */
+/* Primaire : #6941C6 · Accent : #F4A738 · Blanc : #FFFFFF · Texte : #1A1523 */
+:root {
+  /* Couleurs brand exactes */
+  --primary:        #6941C6;
+  --primary-hover:  #5530A8;
+  --primary-light:  #F0EAFB;   /* 4% primary sur blanc */
+  --primary-mid:    #E2D4F8;   /* 12% primary */
+  --primary-border: #C8B5F0;   /* 25% primary */
+
+  --accent:         #F4A738;
+  --accent-hover:   #D98E20;
+  --accent-light:   #FEF4E0;
+  --accent-border:  #FAD585;
+
+  --dark:           #1A1523;
+  --dark-soft:      #3A2D52;   /* texte secondaire */
+  --muted:          #7B6E9A;   /* texte désactivé */
+  --muted-light:    #B0A5C8;
+
+  --white:          #FFFFFF;
+  --bg:             #FFFFFF;
+  --bg-subtle:      #F7F4FD;   /* fond légèrement teinté */
+
+  /* Aliases pour compatibilité avec le code existant */
+  --violet:         #6941C6;
+  --violet-hover:   #5530A8;
+  --violet-light:   #F0EAFB;
+  --violet-mid:     #E2D4F8;
+  --violet-border:  #C8B5F0;
+  --amber:          #F4A738;
+  --amber-raw:      #F4A738;
+  --amber-light:    #FEF4E0;
+  --amber-border:   #FAD585;
+  --text:           #1A1523;
+  --text-soft:      #3A2D52;
+  --bg-card:        #FFFFFF;
+
+  /* Statuts (neutres, hors charte) */
+  --success:        #059669;
+  --success-light:  #D1FAE5;
+  --success-border: #A7F3D0;
+  --danger:         #DC2626;
+  --danger-light:   #FEE2E2;
+
+  /* Shadows basées sur --primary */
+  --shadow-sm:     0 1px 4px rgba(105,65,198,0.07), 0 2px 10px rgba(105,65,198,0.05);
+  --shadow-md:     0 4px 16px rgba(105,65,198,0.12), 0 1px 4px rgba(105,65,198,0.06);
+  --shadow-lg:     0 8px 32px rgba(105,65,198,0.18), 0 2px 8px rgba(105,65,198,0.08);
+  --shadow-violet: 0 8px 28px rgba(105,65,198,0.38);
+
+  /* Radius */
+  --r-sm: 10px;
+  --r-md: 14px;
+  --r-lg: 18px;
+  --r-xl: 22px;
+  --r-full: 999px;
+}
+
+/* ─── RESET ──────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg-subtle);
+  color: var(--dark);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+/* ─── SHELL ──────────────────────────────────────── */
+#root {
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.app-shell {
+  width: 100%;
+  max-width: 390px;
+  min-height: 100vh;
+  background: var(--bg);
+  position: relative;
+  box-shadow: 0 0 60px rgba(60,20,120,0.18);
+  overflow-x: hidden;
+}
+
+.screen {
+  padding: 0 20px;
+  padding-bottom: 32px;
+  min-height: 100vh;
+  background: var(--bg);
+}
+
+/* ─── TYPOGRAPHY ─────────────────────────────────── */
+.mono { font-family: 'JetBrains Mono', monospace; }
+
+/* ─── BUTTONS ────────────────────────────────────── */
+.btn-primary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  height: 54px;
+  background: var(--primary);
+  color: var(--white);
+  border: none;
+  border-radius: var(--r-md);
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(105,65,198,0.30), 0 1px 0 rgba(255,255,255,0.12) inset;
+  transition: all 0.18s ease;
+  letter-spacing: -0.1px;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0);
+  transition: background 0.18s;
+  border-radius: inherit;
+}
+
+.btn-primary:hover::after { background: rgba(255,255,255,0.08); }
+.btn-primary:active { transform: scale(0.985); }
+.btn-primary:disabled { opacity: 0.65; pointer-events: none; }
+
+.btn-secondary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  height: 52px;
+  background: var(--white);
+  color: var(--violet);
+  border: 1.5px solid var(--violet-border);
+  border-radius: var(--r-md);
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-secondary:hover {
+  background: var(--violet-light);
+  border-color: var(--violet);
+}
+
+.btn-success-outline {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  height: 48px;
+  background: transparent;
+  color: var(--success);
+  border: 1.5px solid var(--success-border);
+  border-radius: var(--r-md);
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-success-outline:hover { background: var(--success-light); }
+
+/* ─── CARDS ──────────────────────────────────────── */
+.card {
+  background: var(--bg-card);
+  border: 1.5px solid var(--violet-border);
+  border-radius: var(--r-lg);
+  padding: 16px 18px;
+  box-shadow: var(--shadow-sm);
+}
+
+.card-warm {
+  background: var(--white);
+  border: 1.5px solid var(--violet-border);
+  border-radius: var(--r-lg);
+  padding: 16px 18px;
+  box-shadow: var(--shadow-sm);
+}
+
+/* ─── INPUTS ─────────────────────────────────────── */
+.input-base {
+  width: 100%;
+  height: 50px;
+  border-radius: var(--r-md);
+  border: 1.5px solid var(--violet-border);
+  background: var(--white);
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  padding: 0 14px;
+}
+
+.input-base:focus {
+  border-color: var(--violet);
+  box-shadow: 0 0 0 3px rgba(105,65,198,0.10);
+}
+
+/* ─── BADGE ──────────────────────────────────────── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  border-radius: var(--r-full);
+  padding: 4px 12px;
+  font-size: 12px;
+  font-weight: 700;
+  font-family: 'Inter', sans-serif;
+}
+
+/* ─── ANIMATIONS ─────────────────────────────────── */
+@keyframes scan {
+  0%   { top: 0%; }
+  50%  { top: calc(100% - 3px); }
+  100% { top: 0%; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInScale {
+  from { opacity: 0; transform: scale(0.94); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to   { transform: translateY(0); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.75; transform: scale(0.97); }
+}
+
+@keyframes breathe {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(105,65,198,0.15); }
+  50%       { box-shadow: 0 0 0 12px rgba(105,65,198,0); }
+}
+
+@keyframes checkPop {
+  0%   { transform: scale(0); opacity: 0; }
+  60%  { transform: scale(1.2); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200px 0; }
+  100% { background-position: 200px 0; }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-6px); }
+}
+
+@keyframes revealUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.reveal      { animation: revealUp 0.5s cubic-bezier(0.22,1,0.36,1) both; }
+.reveal-d1   { animation-delay: 0.08s; }
+.reveal-d2   { animation-delay: 0.16s; }
+.reveal-d3   { animation-delay: 0.24s; }
+.reveal-d4   { animation-delay: 0.32s; }
+
+/* ─── TOPBAR ─────────────────────────────────────── */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 58px;
+  padding: 0 16px;
+  background: rgba(255,255,255,0.97);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--violet-border);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+/* ─── FOCUS VISIBLE ──────────────────────────────── */
+button:focus-visible {
+  outline: 2px solid var(--violet);
+  outline-offset: 2px;
+}
