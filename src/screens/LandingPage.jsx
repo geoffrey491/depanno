@@ -157,7 +157,7 @@ export default function LandingPage() {
   const goToApp = () => navigate('/onboarding')
 
   return (
-    <div style={{ background: 'var(--white)', minHeight: '100vh' }}>
+    <div style={{ background: 'var(--white)', minHeight: '100dvh' }}>
 
       {/* ── NAV ── */}
       <nav style={{

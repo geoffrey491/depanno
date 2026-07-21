@@ -29,7 +29,7 @@ function AppContent() {
   if (loading) {
     return (
       <div style={{
-        width: '100%', maxWidth: 390, minHeight: '100vh',
+        width: '100%', maxWidth: 390, minHeight: '100dvh',
         background: 'var(--bg)', margin: '0 auto',
         display: 'flex', alignItems: 'center', justifyContent: 'center',
         flexDirection: 'column', gap: 16,
@@ -49,8 +49,8 @@ function AppContent() {
   return (
     <div style={{
       width: '100%',
-      maxWidth: isFullWidth ? 390 : 390,
-      minHeight: '100vh',
+      maxWidth: 390,
+      minHeight: '100dvh',
       background: 'var(--white)',
       margin: '0 auto',
       position: 'relative',

@@ -250,7 +250,7 @@ export default function QuestionsScreen() {
   const progress = Math.min(userAnswers / TOTAL_QUESTIONS, 1)
 
   return (
-    <div style={{ background: 'var(--bg)', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+    <div style={{ background: 'var(--bg)', minHeight: '100dvh', display: 'flex', flexDirection: 'column' }}>
 
       {/* ── Header ── */}
       <div style={{
@@ -307,7 +307,7 @@ export default function QuestionsScreen() {
       </div>
 
       {/* ── Messages ── */}
-      <div style={{ flex: 1, overflowY: 'auto', padding: '20px 16px 10px', display: 'flex', flexDirection: 'column' }}>
+      <div style={{ flex: 1, overflowY: 'auto', padding: '20px 16px 10px', display: 'flex', flexDirection: 'column', WebkitOverflowScrolling: 'touch' }}>
         {messages.map((msg, i) =>
           msg.role === 'ia'
             ? <IaBubble key={i} text={msg.text} />
@@ -389,8 +389,9 @@ export default function QuestionsScreen() {
 
       {/* ── Input ── */}
       <div style={{
-        padding: '10px 16px 20px',
+        padding: '10px 16px max(20px, env(safe-area-inset-bottom))',
         background: 'rgba(255,255,255,0.97)', backdropFilter: 'blur(14px)',
+        WebkitBackdropFilter: 'blur(14px)',
         borderTop: '1px solid var(--violet-border)', flexShrink: 0,
       }}>
         <form onSubmit={handleSubmit} style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
@@ -403,7 +404,7 @@ export default function QuestionsScreen() {
             style={{
               flex: 1, height: 48, borderRadius: 'var(--r-full)',
               border: `1.5px solid ${locked ? '#F0EAFB' : 'var(--violet-border)'}`,
-              padding: '0 18px', fontSize: 14,
+              padding: '0 18px', fontSize: 16,
               fontFamily: 'Inter, sans-serif', color: 'var(--text)',
               background: locked ? '#F9F7FD' : 'var(--white)',
               outline: 'none', transition: 'all 0.2s',

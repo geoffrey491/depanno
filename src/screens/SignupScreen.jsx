@@ -28,7 +28,7 @@ function InputField({ label, type = 'text', value, onChange, placeholder, icon: 
             borderRadius: 12,
             border: `1.5px solid ${error ? 'var(--danger)' : 'var(--violet-border)'}`,
             background: error ? '#FFF5F5' : 'var(--bg)',
-            fontSize: 14, fontFamily: 'Inter, sans-serif', color: 'var(--text)', outline: 'none',
+            fontSize: 16, fontFamily: 'Inter, sans-serif', color: 'var(--text)', outline: 'none',
             transition: 'border-color 0.15s',
             boxSizing: 'border-box',
           }}
@@ -114,7 +114,7 @@ export default function SignupScreen() {
   if (done) {
     return (
       <div style={{
-        minHeight: '100vh',
+        minHeight: '100dvh',
         background: 'linear-gradient(160deg, #EDE8FC 0%, #FFFFFF 60%, #D1FAE5 100%)',
         display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
         padding: '0 28px', textAlign: 'center',
@@ -141,7 +141,7 @@ export default function SignupScreen() {
   }
 
   return (
-    <div style={{ background: 'var(--bg)', minHeight: '100vh' }}>
+    <div style={{ background: 'var(--bg)', minHeight: '100dvh' }}>
 
       {/* ── Header ── */}
       <div style={{

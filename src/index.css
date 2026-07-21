@@ -62,7 +62,12 @@
 /* ─── RESET ──────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  /* Prevent iOS text size adjustment */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
 
 body {
   font-family: 'Inter', sans-serif;
@@ -72,19 +77,33 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-size: 15px;
   line-height: 1.5;
+  /* Prevent overscroll bounce on iOS */
+  overscroll-behavior: none;
+  /* Fill the real visible height on mobile browsers */
+  min-height: 100dvh;
+}
+
+/* Remove tap highlight on all interactive elements */
+*, button, a, input, textarea, select {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Prevent iOS zoom on input focus — always use font-size ≥ 16px on inputs */
+input, textarea, select {
+  font-size: 16px;
 }
 
 /* ─── SHELL ──────────────────────────────────────── */
 #root {
   display: flex;
   justify-content: center;
-  min-height: 100vh;
+  min-height: 100dvh;
 }
 
 .app-shell {
   width: 100%;
   max-width: 390px;
-  min-height: 100vh;
+  min-height: 100dvh;
   background: var(--bg);
   position: relative;
   box-shadow: 0 0 60px rgba(60,20,120,0.18);
@@ -93,8 +112,8 @@ body {
 
 .screen {
   padding: 0 20px;
-  padding-bottom: 32px;
-  min-height: 100vh;
+  padding-bottom: max(32px, env(safe-area-inset-bottom));
+  min-height: 100dvh;
   background: var(--bg);
 }
 
@@ -301,12 +320,20 @@ body {
   justify-content: space-between;
   height: 58px;
   padding: 0 16px;
+  padding-top: env(safe-area-inset-top);
   background: rgba(255,255,255,0.97);
   backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--violet-border);
   position: sticky;
   top: 0;
   z-index: 50;
+}
+
+/* ─── SMOOTH SCROLL AREAS ────────────────────────── */
+.scroll-area {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: contain;
 }
 
 /* ─── FOCUS VISIBLE ──────────────────────────────── */

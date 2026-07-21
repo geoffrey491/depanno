@@ -34,7 +34,7 @@ function InputField({ label, type = 'text', value, onChange, placeholder, icon: 
             borderRadius: 12,
             border: `1.5px solid ${error ? 'var(--danger)' : 'var(--violet-border)'}`,
             background: error ? 'var(--danger-light)' : 'var(--white)',
-            fontSize: 14,
+            fontSize: 16,
             fontFamily: 'Inter, sans-serif',
             color: 'var(--text)',
             outline: 'none',
@@ -110,7 +110,7 @@ export default function LoginScreen() {
   }
 
   return (
-    <div style={{ background: 'var(--bg)', minHeight: '100vh' }}>
+    <div style={{ background: 'var(--bg)', minHeight: '100dvh' }}>
       {/* Header sticky */}
       <div style={{
         position: 'sticky', top: 0, zIndex: 10,

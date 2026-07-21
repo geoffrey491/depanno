@@ -342,7 +342,7 @@ export default function ExpertChatScreen() {
 
   return (
     <div style={{
-      background: 'var(--bg)', minHeight: '100vh',
+      background: 'var(--bg)', minHeight: '100dvh',
       display: 'flex', flexDirection: 'column',
     }}>
 
@@ -389,7 +389,7 @@ export default function ExpertChatScreen() {
       </div>
 
       {/* ── Zone des messages ── */}
-      <div style={{ flex: 1, overflowY: 'auto', padding: '16px 16px 8px' }}>
+      <div style={{ flex: 1, overflowY: 'auto', padding: '16px 16px 8px', WebkitOverflowScrolling: 'touch' }}>
 
         {messages.map((m, i) =>
           m.type === 'ia'
@@ -471,8 +471,9 @@ export default function ExpertChatScreen() {
 
       {/* ── Zone de saisie ── */}
       <div style={{
-        padding: '10px 16px 20px',
+        padding: '10px 16px max(20px, env(safe-area-inset-bottom))',
         background: 'rgba(255,255,255,0.97)', backdropFilter: 'blur(14px)',
+        WebkitBackdropFilter: 'blur(14px)',
         borderTop: '1px solid var(--violet-border)', flexShrink: 0,
       }}>
         <form onSubmit={handleSubmit} style={{ display: 'flex', gap: 10, alignItems: 'flex-end' }}>
@@ -497,7 +498,7 @@ export default function ExpertChatScreen() {
             style={{
               flex: 1, minHeight: 48, maxHeight: 120,
               borderRadius: 16, border: `1.5px solid ${locked ? '#F0EAFB' : 'var(--violet-border)'}`,
-              padding: '12px 16px', fontSize: 14, fontFamily: 'Inter, sans-serif',
+              padding: '12px 16px', fontSize: 16, fontFamily: 'Inter, sans-serif',
               color: 'var(--text)', background: locked ? '#F9F7FD' : 'white',
               outline: 'none', resize: 'none', lineHeight: 1.5, transition: 'border-color 0.2s',
             }}

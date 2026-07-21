@@ -47,7 +47,7 @@ export default function HomeScreen() {
   const firstName = displayName?.split(' ')[0] || null
 
   return (
-    <div style={{ background: 'var(--bg)', minHeight: '100vh' }}>
+    <div style={{ background: 'var(--bg)', minHeight: '100dvh' }}>
       <TopBar title="Depanno" showMenu />
 
       <div style={{ padding: '24px 20px 32px' }}>
