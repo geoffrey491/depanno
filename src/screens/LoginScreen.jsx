@@ -129,12 +129,8 @@ export default function LoginScreen() {
         <span style={{ fontWeight: 800, fontSize: 16, color: 'var(--violet)', letterSpacing: '-0.3px' }}>
           Dep<span style={{ color: 'var(--text)' }}>anno</span>
         </span>
-        <button onClick={() => navigate('/auth/signup')} style={{
-          background: 'none', border: 'none', fontSize: 13, color: 'var(--violet)',
-          fontWeight: 700, cursor: 'pointer', fontFamily: 'Inter, sans-serif',
-        }}>
-          S'inscrire
-        </button>
+        {/* Espace pour équilibrer le header — pas de lien inscription ici */}
+        <div style={{ width: 64 }} />
       </div>
 
       <div style={{ padding: '32px 20px 40px' }}>
@@ -269,13 +265,17 @@ export default function LoginScreen() {
           </button>
         </div>
 
-        <p style={{ textAlign: 'center', marginTop: 28, fontSize: 13, color: 'var(--muted)' }}>
+        <p style={{ textAlign: 'center', marginTop: 28, fontSize: 13, color: 'var(--muted)', lineHeight: 1.5 }}>
           Pas encore de compte ?{' '}
           <span
-            onClick={() => navigate('/auth/signup')}
+            onClick={() => navigate('/onboarding')}
             style={{ color: 'var(--violet)', fontWeight: 700, cursor: 'pointer' }}
           >
-            S'inscrire gratuitement
+            Lancez une analyse gratuite
+          </span>
+          <br />
+          <span style={{ fontSize: 12, color: 'var(--muted-light)' }}>
+            L&apos;inscription se fait après le diagnostic
           </span>
         </p>
       </div>
