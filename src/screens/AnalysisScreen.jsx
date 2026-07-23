@@ -153,7 +153,7 @@ export default function AnalysisScreen() {
 
   return (
     <div style={{
-      minHeight: '100vh',
+      minHeight: '100dvh',
       background: 'linear-gradient(160deg, #EDE8FC 0%, #F9F6FF 35%, #FFFFFF 70%, #F0FDF9 100%)',
       display: 'flex',
       flexDirection: 'column',

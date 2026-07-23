@@ -39,7 +39,7 @@ export default function SignupGateScreen() {
 
   return (
     <div style={{
-      minHeight: '100vh',
+      minHeight: '100dvh',
       background: 'linear-gradient(170deg, #EDE8FC 0%, #FFFFFF 50%, #F0FDF9 100%)',
       display: 'flex',
       flexDirection: 'column',

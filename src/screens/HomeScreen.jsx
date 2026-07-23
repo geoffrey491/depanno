@@ -47,10 +47,10 @@ export default function HomeScreen() {
   const firstName = displayName?.split(' ')[0] || null
 
   return (
-    <div style={{ background: 'var(--bg)', minHeight: '100dvh' }}>
+    <div style={{ background: 'var(--bg)', minHeight: '100dvh', width: '100%', overflowX: 'hidden' }}>
       <TopBar title="Depanno" showMenu />
 
-      <div style={{ padding: '24px 20px 32px' }}>
+      <div style={{ padding: 'var(--page-y) var(--page-x) max(32px, env(safe-area-inset-bottom, 0px))' }}>
 
         {/* ── Accroche ── */}
         <p style={{ fontSize: 13, color: 'var(--muted)', fontWeight: 500, marginBottom: 20 }}>
@@ -80,10 +80,10 @@ export default function HomeScreen() {
             <Wrench size={26} color="white" />
           </div>
           <div style={{ flex: 1 }}>
-            <p style={{ fontSize: 17, fontWeight: 800, color: 'white', marginBottom: 4, letterSpacing: '-0.3px' }}>
+            <p style={{ fontSize: 'clamp(15px, 4.2vw, 17px)', fontWeight: 800, color: 'white', marginBottom: 4, letterSpacing: '-0.3px' }}>
               Analyser un problème
             </p>
-            <p style={{ fontSize: 12.5, color: 'rgba(255,255,255,0.75)', lineHeight: 1.4 }}>
+            <p style={{ fontSize: 'clamp(12px, 3.2vw, 13px)', color: 'rgba(255,255,255,0.75)', lineHeight: 1.4 }}>
               Décrivez votre problème · Résultat en 3 min
             </p>
           </div>

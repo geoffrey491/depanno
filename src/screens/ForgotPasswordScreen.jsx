@@ -21,7 +21,7 @@ export default function ForgotPasswordScreen() {
   if (sent) {
     return (
       <div style={{
-        minHeight: '100vh',
+        minHeight: '100dvh',
         background: 'linear-gradient(160deg, #EDE8FC 0%, #FFFFFF 60%, #F0FDF9 100%)',
         display: 'flex', flexDirection: 'column', alignItems: 'center',
         justifyContent: 'center', padding: '0 28px', textAlign: 'center',
@@ -73,7 +73,7 @@ export default function ForgotPasswordScreen() {
 
   /* ── Formulaire ── */
   return (
-    <div style={{ background: 'var(--bg)', minHeight: '100vh' }}>
+    <div style={{ background: 'var(--bg)', minHeight: '100dvh' }}>
 
       {/* Header sticky */}
       <div style={{

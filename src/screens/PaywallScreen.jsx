@@ -98,7 +98,7 @@ export default function PaywallScreen() {
   const [paying, setPaying] = useState(false)
 
   return (
-    <div style={{ position: 'relative', minHeight: '100vh', background: 'var(--bg)', overflow: 'hidden' }}>
+    <div style={{ position: 'relative', minHeight: '100dvh', background: 'var(--bg)', overflow: 'hidden' }}>
       {/* Blurred background */}
       <BlurredResult />
 
@@ -115,7 +115,7 @@ export default function PaywallScreen() {
         left: '50%',
         transform: 'translateX(-50%)',
         width: '100%',
-        maxWidth: 390,
+        maxWidth: '100%',
         background: 'var(--white)',
         borderRadius: '24px 24px 0 0',
         padding: '0 20px 36px',

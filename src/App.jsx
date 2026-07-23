@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { AuthProvider, useAuth } from './context/AuthContext'
 import { UnlockProvider } from './context/UnlockContext'
 import { AnalysisProvider } from './context/AnalysisContext'
@@ -20,17 +20,13 @@ import ExpertChatScreen from './screens/ExpertChatScreen'
 import ProfileScreen from './screens/ProfileScreen'
 import HistoryScreen from './screens/HistoryScreen'
 import ConseilsScreen from './screens/ConseilsScreen'
-const FULL_WIDTH = ['/', '/onboarding', '/auth/signup', '/auth/login', '/auth/forgot', '/auth/gate', '/payment/success', '/app/deep-analysis', '/app/expert-chat']
 
 function AppContent() {
   const { loading } = useAuth()
-  const location = useLocation()
 
   if (loading) {
     return (
-      <div style={{
-        width: '100%', maxWidth: 390, minHeight: '100dvh',
-        background: 'var(--bg)', margin: '0 auto',
+      <div className="app-shell" style={{
         display: 'flex', alignItems: 'center', justifyContent: 'center',
         flexDirection: 'column', gap: 16,
       }}>
@@ -44,32 +40,18 @@ function AppContent() {
       </div>
     )
   }
-  const isFullWidth = FULL_WIDTH.includes(location.pathname)
 
   return (
-    <div style={{
-      width: '100%',
-      maxWidth: 390,
-      minHeight: '100dvh',
-      background: 'var(--white)',
-      margin: '0 auto',
-      position: 'relative',
-      boxShadow: '0 0 40px rgba(0,0,0,0.10)',
-    }}>
+    <div className="app-shell">
       <Routes>
-        {/* Landing, Onboarding & Auth */}
         <Route path="/" element={<LandingPage />} />
         <Route path="/onboarding" element={<OnboardingScreen />} />
         <Route path="/auth/signup" element={<SignupScreen />} />
         <Route path="/auth/login" element={<LoginScreen />} />
         <Route path="/auth/forgot" element={<ForgotPasswordScreen />} />
         <Route path="/auth/gate" element={<SignupGateScreen />} />
-
-        {/* Payment */}
         <Route path="/payment/success" element={<PaymentSuccessScreen />} />
         <Route path="/app/deep-analysis" element={<DeepAnalysisScreen />} />
-
-        {/* App */}
         <Route path="/app" element={<HomeScreen />} />
         <Route path="/app/upload" element={<UploadScreen />} />
         <Route path="/app/questions" element={<QuestionsScreen />} />

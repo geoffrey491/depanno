@@ -55,9 +55,10 @@ function IaBubble({ text }) {
       <div style={{
         background: 'white', border: '1.5px solid var(--violet-border)',
         borderRadius: '4px 18px 18px 18px', padding: '13px 16px',
-        maxWidth: '82%', boxShadow: 'var(--shadow-sm)',
+        maxWidth: 'min(82%, 360px)', boxShadow: 'var(--shadow-sm)',
+        wordBreak: 'break-word', overflowWrap: 'anywhere',
       }}>
-        <div style={{ fontSize: 13.5, color: 'var(--text)', lineHeight: 1.65 }}>
+        <div style={{ fontSize: 'clamp(13px, 3.5vw, 14.5px)', color: 'var(--text)', lineHeight: 1.65 }}>
           {text.split('\n').map((line, i) => {
             if (line.startsWith('- ') || line.startsWith('• ')) {
               return (
@@ -92,9 +93,10 @@ function UserBubble({ text }) {
       <div style={{
         background: 'var(--primary)',
         borderRadius: '18px 4px 18px 18px', padding: '12px 16px',
-        maxWidth: '78%', boxShadow: '0 4px 12px rgba(105,65,198,0.25)',
+        maxWidth: 'min(78%, 340px)', boxShadow: '0 4px 12px rgba(105,65,198,0.25)',
+        wordBreak: 'break-word', overflowWrap: 'anywhere',
       }}>
-        <p style={{ fontSize: 14, color: 'white', lineHeight: 1.55, margin: 0 }}>{text}</p>
+        <p style={{ fontSize: 'clamp(13px, 3.6vw, 15px)', color: 'white', lineHeight: 1.55, margin: 0 }}>{text}</p>
       </div>
     </div>
   )
@@ -104,10 +106,11 @@ function UserBubble({ text }) {
 function DiagnosticCard({ diagnosis, category }) {
   const isDIY = diagnosis.verdict === 'DIY'
   return (
-    <div style={{ paddingLeft: 44, marginBottom: 16, animation: 'fadeInScale 0.4s ease' }}>
+    <div style={{ paddingLeft: 'clamp(8px, 2vw, 44px)', marginBottom: 16, animation: 'fadeInScale 0.4s ease', maxWidth: '100%' }}>
       <div style={{
         background: 'white', border: '2px solid var(--violet-border)',
         borderRadius: 16, overflow: 'hidden', boxShadow: 'var(--shadow-md)',
+        width: '100%',
       }}>
         {/* En-tête coloré */}
         <div style={{
@@ -168,7 +171,7 @@ function DiagnosticCard({ diagnosis, category }) {
 /* ─── Étape résolution ─────────────────────────────── */
 function ResolutionStep({ onChoose }) {
   return (
-    <div style={{ paddingLeft: 44, marginBottom: 16, animation: 'fadeInScale 0.5s ease' }}>
+    <div style={{ paddingLeft: 'clamp(0px, 2vw, 44px)', marginBottom: 16, animation: 'fadeInScale 0.5s ease' }}>
       <div style={{
         background: 'white', border: '2px solid var(--violet-border)',
         borderRadius: 16, padding: '18px 16px', boxShadow: 'var(--shadow-md)',
@@ -341,18 +344,18 @@ export default function ExpertChatScreen() {
   const diag = currentDiagnosis
 
   return (
-    <div style={{
-      background: 'var(--bg)', minHeight: '100dvh',
-      display: 'flex', flexDirection: 'column',
-    }}>
+    <div className="screen-chat">
 
       {/* ── Header ── */}
       <div style={{
-        display: 'flex', alignItems: 'center', gap: 12,
-        padding: '14px 16px 12px',
+        display: 'flex', alignItems: 'center', gap: 10,
+        padding: '12px var(--page-x) 10px',
+        paddingTop: 'max(12px, env(safe-area-inset-top, 0px))',
         background: 'rgba(255,255,255,0.97)', backdropFilter: 'blur(14px)',
+        WebkitBackdropFilter: 'blur(14px)',
         borderBottom: '1px solid var(--violet-border)',
         position: 'sticky', top: 0, zIndex: 50, flexShrink: 0,
+        width: '100%', boxSizing: 'border-box',
       }}>
         <button onClick={() => navigate('/app')} style={{
           width: 36, height: 36, borderRadius: 10,
@@ -389,7 +392,7 @@ export default function ExpertChatScreen() {
       </div>
 
       {/* ── Zone des messages ── */}
-      <div style={{ flex: 1, overflowY: 'auto', padding: '16px 16px 8px', WebkitOverflowScrolling: 'touch' }}>
+      <div style={{ flex: 1, overflowY: 'auto', overflowX: 'hidden', padding: '16px var(--page-x) 8px', WebkitOverflowScrolling: 'touch', minHeight: 0 }}>
 
         {messages.map((m, i) =>
           m.type === 'ia'
@@ -404,7 +407,7 @@ export default function ExpertChatScreen() {
 
         {/* Paywall inline */}
         {showPaywall && !unlocked && (
-          <div style={{ paddingLeft: 44, marginBottom: 14 }}>
+          <div style={{ paddingLeft: 'clamp(0px, 2vw, 44px)', marginBottom: 14 }}>
             <div style={{
               background: 'linear-gradient(135deg, #1A1523, #3A2D52)',
               borderRadius: 14, padding: '14px 16px',
@@ -432,18 +435,19 @@ export default function ExpertChatScreen() {
 
         {/* Boutons démarrage rapide après l'analyse */}
         {phase === 'result' && !locked && (
-          <div style={{ paddingLeft: 44, marginBottom: 12, animation: 'fadeIn 0.4s ease' }}>
+          <div style={{ paddingLeft: 'clamp(0px, 2vw, 44px)', marginBottom: 12, animation: 'fadeIn 0.4s ease' }}>
             <p style={{ fontSize: 11, fontWeight: 600, color: 'var(--muted)', marginBottom: 8 }}>Questions fréquentes :</p>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: 8 }}>
               {QUICK_STARTS.map(({ icon: Icon, label, color, bg, border, msg }) => (
                 <button key={label} onClick={() => { setPhase('chat'); sendMessage(msg) }} style={{
                   background: bg, border: `1.5px solid ${border}`,
-                  borderRadius: 12, padding: '10px 12px',
+                  borderRadius: 12, padding: '12px 12px',
                   display: 'flex', alignItems: 'center', gap: 8,
                   cursor: 'pointer', fontFamily: 'Inter, sans-serif', textAlign: 'left',
+                  minHeight: 48,
                 }}>
                   <Icon size={14} color={color} style={{ flexShrink: 0 }} />
-                  <span style={{ fontSize: 11, fontWeight: 700, color, lineHeight: 1.2 }}>{label}</span>
+                  <span style={{ fontSize: 'clamp(11px, 3vw, 12px)', fontWeight: 700, color, lineHeight: 1.25 }}>{label}</span>
                 </button>
               ))}
             </div>
@@ -452,7 +456,7 @@ export default function ExpertChatScreen() {
 
         {/* Suggestions rapides */}
         {quickReplies.length > 0 && !locked && phase !== 'resolution' && (
-          <div style={{ paddingLeft: 44, marginBottom: 10, display: 'flex', flexWrap: 'wrap', gap: 7 }}>
+          <div style={{ paddingLeft: 'clamp(0px, 2vw, 44px)', marginBottom: 10, display: 'flex', flexWrap: 'wrap', gap: 7 }}>
             {quickReplies.map(s => (
               <button key={s} onClick={() => sendMessage(s)} style={{
                 background: 'white', border: '1.5px solid var(--violet-border)',
@@ -471,12 +475,13 @@ export default function ExpertChatScreen() {
 
       {/* ── Zone de saisie ── */}
       <div style={{
-        padding: '10px 16px max(20px, env(safe-area-inset-bottom))',
+        padding: '10px var(--page-x) max(16px, env(safe-area-inset-bottom, 0px))',
         background: 'rgba(255,255,255,0.97)', backdropFilter: 'blur(14px)',
         WebkitBackdropFilter: 'blur(14px)',
         borderTop: '1px solid var(--violet-border)', flexShrink: 0,
+        width: '100%', boxSizing: 'border-box',
       }}>
-        <form onSubmit={handleSubmit} style={{ display: 'flex', gap: 10, alignItems: 'flex-end' }}>
+        <form onSubmit={handleSubmit} style={{ display: 'flex', gap: 10, alignItems: 'flex-end', width: '100%' }}>
           <textarea
             ref={inputRef}
             value={input}
@@ -496,7 +501,7 @@ export default function ExpertChatScreen() {
             disabled={locked}
             rows={1}
             style={{
-              flex: 1, minHeight: 48, maxHeight: 120,
+              flex: 1, minWidth: 0, minHeight: 48, maxHeight: 120,
               borderRadius: 16, border: `1.5px solid ${locked ? '#F0EAFB' : 'var(--violet-border)'}`,
               padding: '12px 16px', fontSize: 16, fontFamily: 'Inter, sans-serif',
               color: 'var(--text)', background: locked ? '#F9F7FD' : 'white',

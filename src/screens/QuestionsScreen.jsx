@@ -50,9 +50,10 @@ function IaBubble({ text }) {
       <div style={{
         background: 'var(--white)', border: '1.5px solid var(--violet-border)',
         borderRadius: '4px 18px 18px 18px', padding: '12px 16px',
-        maxWidth: '78%', boxShadow: 'var(--shadow-sm)',
+        maxWidth: 'min(78%, 340px)', boxShadow: 'var(--shadow-sm)',
+        wordBreak: 'break-word', overflowWrap: 'anywhere',
       }}>
-        <p style={{ fontSize: 14, color: 'var(--text)', lineHeight: 1.55, margin: 0 }}>{text}</p>
+        <p style={{ fontSize: 'clamp(13px, 3.6vw, 15px)', color: 'var(--text)', lineHeight: 1.55, margin: 0 }}>{text}</p>
       </div>
     </div>
   )
@@ -64,9 +65,10 @@ function UserBubble({ text }) {
       <div style={{
         background: 'var(--primary)',
         borderRadius: '18px 4px 18px 18px', padding: '12px 16px',
-        maxWidth: '78%', boxShadow: '0 4px 12px rgba(105,65,198,0.25)',
+        maxWidth: 'min(78%, 340px)', boxShadow: '0 4px 12px rgba(105,65,198,0.25)',
+        wordBreak: 'break-word', overflowWrap: 'anywhere',
       }}>
-        <p style={{ fontSize: 14, color: 'white', lineHeight: 1.55, margin: 0 }}>{text}</p>
+        <p style={{ fontSize: 'clamp(13px, 3.6vw, 15px)', color: 'white', lineHeight: 1.55, margin: 0 }}>{text}</p>
       </div>
     </div>
   )
@@ -250,15 +252,18 @@ export default function QuestionsScreen() {
   const progress = Math.min(userAnswers / TOTAL_QUESTIONS, 1)
 
   return (
-    <div style={{ background: 'var(--bg)', minHeight: '100dvh', display: 'flex', flexDirection: 'column' }}>
+    <div className="screen-chat">
 
       {/* ── Header ── */}
       <div style={{
-        display: 'flex', alignItems: 'center', gap: 12,
-        padding: '14px 16px 12px',
+        display: 'flex', alignItems: 'center', gap: 10,
+        padding: '12px var(--page-x) 10px',
+        paddingTop: 'max(12px, env(safe-area-inset-top, 0px))',
         background: 'rgba(255,255,255,0.97)', backdropFilter: 'blur(14px)',
+        WebkitBackdropFilter: 'blur(14px)',
         borderBottom: '1px solid var(--violet-border)',
         position: 'sticky', top: 0, zIndex: 50, flexShrink: 0,
+        width: '100%', boxSizing: 'border-box',
       }}>
         <button onClick={() => navigate(-1)} style={{
           width: 36, height: 36, borderRadius: 10,
@@ -307,7 +312,7 @@ export default function QuestionsScreen() {
       </div>
 
       {/* ── Messages ── */}
-      <div style={{ flex: 1, overflowY: 'auto', padding: '20px 16px 10px', display: 'flex', flexDirection: 'column', WebkitOverflowScrolling: 'touch' }}>
+      <div style={{ flex: 1, overflowY: 'auto', overflowX: 'hidden', padding: '16px var(--page-x) 10px', display: 'flex', flexDirection: 'column', WebkitOverflowScrolling: 'touch', minHeight: 0 }}>
         {messages.map((msg, i) =>
           msg.role === 'ia'
             ? <IaBubble key={i} text={msg.text} />
@@ -320,18 +325,19 @@ export default function QuestionsScreen() {
       {/* ── Suggestions ── */}
       {suggestions.length > 0 && !locked && (
         <div style={{
-          padding: '8px 16px 6px',
+          padding: '8px var(--page-x) 6px',
           display: 'flex', flexWrap: 'wrap', gap: 8,
           animation: 'fadeIn 0.3s ease',
         }}>
           {suggestions.map(s => (
             <button key={s} onClick={() => sendAnswer(s)} style={{
               background: 'var(--white)', border: '1.5px solid var(--violet-border)',
-              borderRadius: 'var(--r-full)', padding: '8px 16px',
-              fontSize: 13, fontWeight: 600, color: 'var(--violet)',
+              borderRadius: 'var(--r-full)', padding: '10px 14px',
+              fontSize: 'clamp(12px, 3.4vw, 14px)', fontWeight: 600, color: 'var(--violet)',
               cursor: 'pointer', fontFamily: 'Inter, sans-serif',
-              boxShadow: 'var(--shadow-sm)', whiteSpace: 'nowrap',
-              transition: 'all 0.15s',
+              boxShadow: 'var(--shadow-sm)', whiteSpace: 'normal', textAlign: 'left',
+              maxWidth: '100%', transition: 'all 0.15s',
+              minHeight: 40,
             }}
               onMouseEnter={e => { e.currentTarget.style.background = 'var(--violet)'; e.currentTarget.style.color = 'white' }}
               onMouseLeave={e => { e.currentTarget.style.background = 'var(--white)'; e.currentTarget.style.color = 'var(--violet)' }}
@@ -344,7 +350,7 @@ export default function QuestionsScreen() {
 
       {/* ── Choix DIY / Pro (fin de conversation) ── */}
       {showResolution && (
-        <div style={{ padding: '12px 16px', animation: 'fadeIn 0.4s ease' }}>
+        <div style={{ padding: '12px var(--page-x)', animation: 'fadeIn 0.4s ease' }}>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
             <button
               onClick={() => navigate('/app/analysis')}
@@ -389,12 +395,13 @@ export default function QuestionsScreen() {
 
       {/* ── Input ── */}
       <div style={{
-        padding: '10px 16px max(20px, env(safe-area-inset-bottom))',
+        padding: '10px var(--page-x) max(16px, env(safe-area-inset-bottom, 0px))',
         background: 'rgba(255,255,255,0.97)', backdropFilter: 'blur(14px)',
         WebkitBackdropFilter: 'blur(14px)',
         borderTop: '1px solid var(--violet-border)', flexShrink: 0,
+        width: '100%', boxSizing: 'border-box',
       }}>
-        <form onSubmit={handleSubmit} style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
+        <form onSubmit={handleSubmit} style={{ display: 'flex', gap: 10, alignItems: 'center', width: '100%' }}>
           <input
             ref={inputRef}
             value={input}
@@ -402,9 +409,9 @@ export default function QuestionsScreen() {
             placeholder={locked ? "L'expert IA répond..." : "Écrivez votre réponse..."}
             disabled={locked}
             style={{
-              flex: 1, height: 48, borderRadius: 'var(--r-full)',
+              flex: 1, minWidth: 0, height: 48, borderRadius: 'var(--r-full)',
               border: `1.5px solid ${locked ? '#F0EAFB' : 'var(--violet-border)'}`,
-              padding: '0 18px', fontSize: 16,
+              padding: '0 16px', fontSize: 16,
               fontFamily: 'Inter, sans-serif', color: 'var(--text)',
               background: locked ? '#F9F7FD' : 'var(--white)',
               outline: 'none', transition: 'all 0.2s',

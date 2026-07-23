@@ -59,7 +59,7 @@ export default function OnboardingScreen() {
   /* ── STEP 1 : catégorie ── */
   if (step === 1) {
     return (
-      <div style={{ background: 'var(--bg)', minHeight: '100vh' }}>
+      <div style={{ background: 'var(--bg)', minHeight: '100dvh' }}>
         <div style={{ padding: '20px 20px 0' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 28 }}>
             <button
@@ -184,7 +184,7 @@ export default function OnboardingScreen() {
 
   /* ── STEP 2 : description ── */
   return (
-    <div style={{ background: 'var(--bg)', minHeight: '100vh' }}>
+    <div style={{ background: 'var(--bg)', minHeight: '100dvh' }}>
       <div style={{ padding: '20px 20px 0' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 22 }}>
           <button
@@ -349,7 +349,7 @@ export default function OnboardingScreen() {
             borderRadius: 'var(--r-md)',
             border: '1.5px solid var(--violet-border)',
             padding: '13px 14px',
-            fontSize: 14,
+            fontSize: 16,
             fontFamily: 'Inter, sans-serif',
             color: 'var(--text)',
             background: 'var(--white)',
@@ -358,6 +358,7 @@ export default function OnboardingScreen() {
             lineHeight: 1.55,
             transition: 'border-color 0.15s, box-shadow 0.15s',
             boxShadow: 'var(--shadow-sm)',
+            boxSizing: 'border-box',
           }}
           onFocus={e => {
             e.target.style.borderColor = 'var(--violet)'

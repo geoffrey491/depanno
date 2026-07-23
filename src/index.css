@@ -57,6 +57,18 @@
   --r-lg: 18px;
   --r-xl: 22px;
   --r-full: 999px;
+
+  /* Spacing fluide — s’adapte de 320px à 430px+ */
+  --page-x: clamp(12px, 4.5vw, 24px);
+  --page-y: clamp(16px, 4vw, 28px);
+  --gap-sm: clamp(6px, 2vw, 10px);
+  --gap-md: clamp(10px, 3vw, 16px);
+  --font-base: clamp(14px, 3.8vw, 16px);
+  --font-sm: clamp(12px, 3.2vw, 14px);
+  --font-lg: clamp(20px, 5.5vw, 28px);
+  --font-xl: clamp(26px, 7vw, 36px);
+  --touch-min: 44px;
+  --shell-max: 480px;
 }
 
 /* ─── RESET ──────────────────────────────────────── */
@@ -75,12 +87,13 @@ body {
   color: var(--dark);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-size: 15px;
+  font-size: var(--font-base);
   line-height: 1.5;
-  /* Prevent overscroll bounce on iOS */
   overscroll-behavior: none;
-  /* Fill the real visible height on mobile browsers */
   min-height: 100dvh;
+  min-height: -webkit-fill-available;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 /* Remove tap highlight on all interactive elements */
@@ -90,31 +103,87 @@ body {
 
 /* Prevent iOS zoom on input focus — always use font-size ≥ 16px on inputs */
 input, textarea, select {
-  font-size: 16px;
+  font-size: 16px !important;
+  max-width: 100%;
 }
 
-/* ─── SHELL ──────────────────────────────────────── */
+img, svg, video, canvas {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ─── SHELL — pleine largeur téléphone, centré desktop ── */
 #root {
   display: flex;
   justify-content: center;
   min-height: 100dvh;
+  min-height: -webkit-fill-available;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 .app-shell {
   width: 100%;
-  max-width: 390px;
+  max-width: 100%;
   min-height: 100dvh;
+  min-height: -webkit-fill-available;
   background: var(--bg);
   position: relative;
-  box-shadow: 0 0 60px rgba(60,20,120,0.18);
   overflow-x: hidden;
+  box-shadow: none;
+}
+
+/* Tablette / desktop : colonne centrée type app */
+@media (min-width: 481px) {
+  .app-shell {
+    max-width: var(--shell-max);
+    box-shadow: 0 0 60px rgba(60, 20, 120, 0.14);
+  }
 }
 
 .screen {
-  padding: 0 20px;
-  padding-bottom: max(32px, env(safe-area-inset-bottom));
+  padding: 0 var(--page-x);
+  padding-bottom: max(32px, env(safe-area-inset-bottom, 0px));
   min-height: 100dvh;
   background: var(--bg);
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* Zones chat / plein écran flex */
+.screen-chat {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+  height: 100svh;
+  max-height: 100dvh;
+  overflow: hidden;
+  background: var(--bg);
+  width: 100%;
+}
+
+.page-pad {
+  padding-left: var(--page-x);
+  padding-right: var(--page-x);
+}
+
+/* Très petits téléphones (iPhone SE, Galaxy Fold fermé…) */
+@media (max-width: 359px) {
+  :root {
+    --page-x: 12px;
+    --font-base: 14px;
+  }
+  .btn-primary, .btn-secondary {
+    height: 48px;
+    font-size: 14px;
+  }
+}
+
+/* Grands téléphones */
+@media (min-width: 414px) and (max-width: 480px) {
+  :root {
+    --page-x: 22px;
+  }
 }
 
 /* ─── TYPOGRAPHY ─────────────────────────────────── */

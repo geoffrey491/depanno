@@ -218,7 +218,7 @@ export default function ResultScreen() {
   // Attente si l'analyse OpenAI n'est pas encore prête
   if (!activeResult) {
     return (
-      <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', gap: 16, background: 'var(--bg)' }}>
+      <div style={{ minHeight: '100dvh', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', gap: 16, background: 'var(--bg)' }}>
         <div style={{ width: 40, height: 40, borderRadius: '50%', border: '3px solid var(--violet)', borderTopColor: 'transparent', animation: 'spin 0.8s linear infinite' }} />
         <p style={{ fontSize: 14, color: 'var(--muted)', fontWeight: 600 }}>Finalisation de l'analyse…</p>
       </div>
@@ -242,7 +242,7 @@ export default function ResultScreen() {
   )
 
   return (
-    <div style={{ background: 'var(--bg)', minHeight: '100vh' }}>
+    <div style={{ background: 'var(--bg)', minHeight: '100dvh' }}>
       <TopBar title="Votre diagnostic" showBack rightElement={shareButton} />
 
       <div style={{ padding: '16px 20px 32px' }}>

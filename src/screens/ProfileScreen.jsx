@@ -32,7 +32,7 @@ export default function ProfileScreen() {
 
   if (!user) {
     return (
-      <div style={{ background: 'var(--bg)', minHeight: '100vh' }}>
+      <div style={{ background: 'var(--bg)', minHeight: '100dvh' }}>
         <TopBar title="Profil" showMenu />
         <div style={{ padding: '60px 20px', textAlign: 'center' }}>
           <p style={{ fontSize: 32, marginBottom: 12 }}>👤</p>
@@ -54,7 +54,7 @@ export default function ProfileScreen() {
   const name = displayName || user.email?.split('@')[0] || 'Utilisateur'
 
   return (
-    <div style={{ background: 'var(--bg)', minHeight: '100vh' }}>
+    <div style={{ background: 'var(--bg)', minHeight: '100dvh' }}>
       <TopBar title="Profil" showMenu />
 
       <div style={{ padding: '24px 20px 32px' }}>

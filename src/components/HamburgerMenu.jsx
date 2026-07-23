@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { Home, Clock, User, X, LogOut, Wrench, Menu } from 'lucide-react'
 import { useAuth } from '../context/AuthContext'
@@ -16,11 +16,17 @@ export default function HamburgerMenu() {
   const location = useLocation()
   const { logout } = useAuth()
 
+  useEffect(() => {
+    if (!open) return
+    const prev = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => { document.body.style.overflow = prev }
+  }, [open])
+
   const go = (path) => { setOpen(false); navigate(path) }
 
   return (
     <>
-      {/* ── Bouton (inline — s'insère dans le TopBar) ── */}
       <button
         onClick={() => setOpen(true)}
         aria-label="Ouvrir le menu"
@@ -35,7 +41,6 @@ export default function HamburgerMenu() {
         <Menu size={18} color="var(--violet)" />
       </button>
 
-      {/* ── Overlay ── */}
       {open && (
         <div
           onClick={() => setOpen(false)}
@@ -48,43 +53,46 @@ export default function HamburgerMenu() {
         />
       )}
 
-      {/* ── Drawer ── */}
       <div style={{
         position: 'fixed',
         top: 0, left: 0,
-        width: 260, height: '100vh',
+        width: 'min(280px, 86vw)',
+        height: '100dvh',
+        maxHeight: '100dvh',
         background: 'white',
         zIndex: 400,
-        transform: open ? 'translateX(0)' : 'translateX(-100%)',
+        transform: open ? 'translateX(0)' : 'translateX(-105%)',
         transition: 'transform 0.26s cubic-bezier(0.4,0,0.2,1)',
         display: 'flex', flexDirection: 'column',
         boxShadow: open ? '6px 0 32px rgba(105,65,198,0.14)' : 'none',
+        paddingTop: 'env(safe-area-inset-top, 0px)',
+        paddingBottom: 'env(safe-area-inset-bottom, 0px)',
       }}>
-        {/* En-tête */}
         <div style={{
-          padding: '18px 18px 14px',
+          padding: '16px 16px 14px',
           borderBottom: '1px solid var(--violet-border)',
           display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+          gap: 8,
         }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-            <img src="/icon-depanno.png" alt="" style={{ width: 34, height: 34, objectFit: 'contain' }} />
-            <img src="/logo-depanno.png" alt="Depanno" style={{ height: 22, objectFit: 'contain' }} />
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10, minWidth: 0 }}>
+            <img src="/icon-depanno.png" alt="" style={{ width: 34, height: 34, objectFit: 'contain', flexShrink: 0 }} />
+            <img src="/logo-depanno.png" alt="Depanno" style={{ height: 22, maxWidth: 120, objectFit: 'contain' }} />
           </div>
           <button
             onClick={() => setOpen(false)}
+            aria-label="Fermer"
             style={{
-              width: 30, height: 30, borderRadius: 8,
+              width: 36, height: 36, borderRadius: 8,
               background: 'var(--violet-light)', border: 'none',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
-              cursor: 'pointer',
+              cursor: 'pointer', flexShrink: 0,
             }}
           >
             <X size={15} color="var(--violet)" />
           </button>
         </div>
 
-        {/* Navigation */}
-        <div style={{ flex: 1, padding: '10px 10px', display: 'flex', flexDirection: 'column', gap: 2 }}>
+        <div style={{ flex: 1, padding: '10px 10px', display: 'flex', flexDirection: 'column', gap: 2, overflowY: 'auto', WebkitOverflowScrolling: 'touch' }}>
           {NAV_ITEMS.map(({ icon: Icon, label, path }) => {
             const active = location.pathname === path
             return (
@@ -93,10 +101,11 @@ export default function HamburgerMenu() {
                 onClick={() => go(path)}
                 style={{
                   display: 'flex', alignItems: 'center', gap: 12,
-                  padding: '12px 14px', borderRadius: 12, border: 'none',
+                  padding: '14px 14px', borderRadius: 12, border: 'none',
                   background: active ? 'var(--violet-light)' : 'transparent',
                   cursor: 'pointer', fontFamily: 'Inter, sans-serif',
                   transition: 'background 0.15s', textAlign: 'left', width: '100%',
+                  minHeight: 48,
                 }}
               >
                 <Icon size={17} strokeWidth={active ? 2.3 : 1.8} color={active ? 'var(--violet)' : 'var(--muted)'} />
@@ -109,16 +118,15 @@ export default function HamburgerMenu() {
           })}
         </div>
 
-        {/* Déconnexion */}
-        <div style={{ padding: '10px 10px 32px', borderTop: '1px solid var(--violet-border)' }}>
+        <div style={{ padding: '10px 10px max(24px, env(safe-area-inset-bottom, 0px))', borderTop: '1px solid var(--violet-border)' }}>
           <button
             onClick={async () => { setOpen(false); try { await logout() } catch {} navigate('/') }}
             style={{
               display: 'flex', alignItems: 'center', gap: 12,
-              padding: '12px 14px', borderRadius: 12, border: 'none',
+              padding: '14px 14px', borderRadius: 12, border: 'none',
               background: 'transparent', cursor: 'pointer',
               fontFamily: 'Inter, sans-serif', width: '100%', textAlign: 'left',
-              transition: 'background 0.15s',
+              minHeight: 48,
             }}
           >
             <LogOut size={17} strokeWidth={1.8} color="#EF4444" />

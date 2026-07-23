@@ -27,7 +27,7 @@ export default function PaymentSuccessScreen() {
 
   return (
     <div style={{
-      minHeight: '100vh',
+      minHeight: '100dvh',
       background: 'linear-gradient(160deg, #F4F0FD 0%, #FFFFFF 60%, #D1FAE5 100%)',
       display: 'flex',
       flexDirection: 'column',

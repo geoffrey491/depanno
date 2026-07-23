@@ -10,8 +10,12 @@ export default function TopBar({ title, showBack = false, showMenu = false, righ
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'space-between',
-      height: 58,
-      padding: '0 16px',
+      minHeight: 58,
+      paddingTop: 'env(safe-area-inset-top, 0px)',
+      paddingLeft: 'max(12px, env(safe-area-inset-left, 0px))',
+      paddingRight: 'max(12px, env(safe-area-inset-right, 0px))',
+      paddingBottom: 0,
+      height: 'calc(58px + env(safe-area-inset-top, 0px))',
       position: 'sticky',
       top: 0,
       background: 'rgba(255,255,255,0.97)',
@@ -19,22 +23,24 @@ export default function TopBar({ title, showBack = false, showMenu = false, righ
       WebkitBackdropFilter: 'blur(14px)',
       zIndex: 50,
       borderBottom: '1px solid var(--violet-border)',
+      width: '100%',
+      boxSizing: 'border-box',
     }}>
-      {/* Gauche */}
-      <div style={{ width: 44, display: 'flex', alignItems: 'center' }}>
+      <div style={{ width: 44, minWidth: 44, display: 'flex', alignItems: 'center', flexShrink: 0 }}>
         {showMenu ? (
           <HamburgerMenu />
         ) : showBack ? (
           <button
             onClick={() => navigate(-1)}
+            aria-label="Retour"
             style={{
-              display: 'flex', alignItems: 'center',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
               background: 'var(--violet-light)',
               border: '1px solid var(--violet-border)',
               borderRadius: 10,
               cursor: 'pointer',
-              padding: '8px',
-              transition: 'background 0.15s',
+              width: 40, height: 40,
+              padding: 0,
             }}
           >
             <ChevronLeft size={18} color="var(--violet)" />
@@ -42,24 +48,23 @@ export default function TopBar({ title, showBack = false, showMenu = false, righ
         ) : null}
       </div>
 
-      {/* Centre */}
-      <div style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+      <div style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center', minWidth: 0, padding: '0 8px' }}>
         {title === 'Depanno' ? (
-          <img src="/logo-depanno.png" alt="Depanno" style={{ height: 26, objectFit: 'contain' }} />
+          <img src="/logo-depanno.png" alt="Depanno" style={{ height: 26, maxWidth: '100%', objectFit: 'contain' }} />
         ) : (
           <span style={{
             fontFamily: 'Inter, sans-serif',
-            fontWeight: 700, fontSize: 16,
+            fontWeight: 700, fontSize: 'clamp(14px, 4vw, 16px)',
             color: 'var(--dark)',
             letterSpacing: '-0.2px',
+            overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
           }}>
             {title}
           </span>
         )}
       </div>
 
-      {/* Droite */}
-      <div style={{ width: 44, display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
+      <div style={{ width: 44, minWidth: 44, display: 'flex', alignItems: 'center', justifyContent: 'flex-end', flexShrink: 0 }}>
         {rightElement ?? null}
       </div>
     </div>

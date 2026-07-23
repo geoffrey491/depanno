@@ -139,7 +139,7 @@ export default function HistoryScreen() {
     .reduce((sum, a) => sum + parseInt(a.saved || 0), 0)
 
   return (
-    <div style={{ background: 'var(--bg)', minHeight: '100vh' }}>
+    <div style={{ background: 'var(--bg)', minHeight: '100dvh' }}>
       <TopBar title="Historique" showMenu />
 
       <div style={{ padding: '16px 20px 32px' }}>
@@ -281,7 +281,7 @@ export default function HistoryScreen() {
                   {/* Info */}
                   <div style={{ flex: 1, minWidth: 0 }}>
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 2 }}>
-                      <p style={{ fontSize: 14, fontWeight: 700, color: 'var(--text)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: 160 }}>
+                      <p style={{ fontSize: 'clamp(13px, 3.6vw, 14px)', fontWeight: 700, color: 'var(--text)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: '100%', minWidth: 0, flex: 1 }}>
                         {item.title}
                       </p>
                       <span style={{

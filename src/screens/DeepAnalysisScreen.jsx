@@ -228,7 +228,7 @@ export default function DeepAnalysisScreen() {
 
   return (
     <div style={{
-      minHeight: '100vh',
+      minHeight: '100dvh',
       background: 'linear-gradient(160deg, #1A1523 0%, #3A2D52 20%, #1E1040 60%, #0F172A 100%)',
       display: 'flex', flexDirection: 'column',
       alignItems: 'center', justifyContent: 'center',

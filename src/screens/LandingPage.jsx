@@ -157,7 +157,7 @@ export default function LandingPage() {
   const goToApp = () => navigate('/onboarding')
 
   return (
-    <div style={{ background: 'var(--white)', minHeight: '100dvh' }}>
+    <div style={{ background: 'var(--white)', minHeight: '100dvh', width: '100%', overflowX: 'hidden' }}>
 
       {/* ── NAV ── */}
       <nav style={{
@@ -166,16 +166,20 @@ export default function LandingPage() {
         zIndex: 100,
         background: 'rgba(255,255,255,0.95)',
         backdropFilter: 'blur(12px)',
+        WebkitBackdropFilter: 'blur(12px)',
         borderBottom: '1px solid var(--violet-border)',
-        padding: '0 20px',
-        height: 56,
+        padding: '0 var(--page-x)',
+        paddingTop: 'env(safe-area-inset-top, 0px)',
+        height: 'calc(56px + env(safe-area-inset-top, 0px))',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
+        width: '100%',
+        boxSizing: 'border-box',
       }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-          <img src="/icon-depanno.png" alt="" style={{ height: 32, objectFit: 'contain' }} />
-          <img src="/logo-depanno.png" alt="Depanno" style={{ height: 26, objectFit: 'contain' }} />
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8, minWidth: 0 }}>
+          <img src="/icon-depanno.png" alt="" style={{ height: 32, width: 32, objectFit: 'contain', flexShrink: 0 }} />
+          <img src="/logo-depanno.png" alt="Depanno" style={{ height: 24, maxWidth: 'min(140px, 40vw)', objectFit: 'contain' }} />
         </div>
         <button
           onClick={() => navigate('/auth/login')}
@@ -195,7 +199,7 @@ export default function LandingPage() {
       </nav>
 
       {/* ── HERO ── */}
-      <section style={{ padding: '44px 20px 32px', textAlign: 'center', background: 'linear-gradient(180deg, #F4F0FD 0%, #FFFFFF 100%)' }}>
+      <section style={{ padding: 'clamp(28px, 8vw, 44px) var(--page-x) 32px', textAlign: 'center', background: 'linear-gradient(180deg, #F4F0FD 0%, #FFFFFF 100%)' }}>
         {/* Badge */}
         <div style={{
           display: 'inline-flex',
@@ -214,12 +218,13 @@ export default function LandingPage() {
         </div>
 
         <h1 style={{
-          fontSize: 34,
+          fontSize: 'clamp(26px, 8vw, 36px)',
           fontWeight: 800,
           lineHeight: 1.15,
           color: 'var(--text)',
           letterSpacing: '-1px',
           marginBottom: 16,
+          padding: '0 4px',
         }}>
           Ne payez plus<br />
           <span style={{
@@ -233,11 +238,12 @@ export default function LandingPage() {
         </h1>
 
         <p style={{
-          fontSize: 16,
+          fontSize: 'clamp(14px, 3.8vw, 16px)',
           color: 'var(--muted)',
           lineHeight: 1.6,
-          maxWidth: 320,
+          maxWidth: 360,
           margin: '0 auto 28px',
+          padding: '0 4px',
         }}>
           Prenez une photo. Notre IA analyse le problème, estime le vrai prix et vous dit si vous pouvez le réparer vous-même.
         </p>
@@ -250,14 +256,14 @@ export default function LandingPage() {
             justifyContent: 'center',
             gap: 8,
             width: '100%',
-            maxWidth: 320,
+            maxWidth: 360,
             margin: '0 auto 14px',
-            height: 56,
+            height: 54,
             background: 'var(--violet)',
             color: 'var(--white)',
             border: 'none',
             borderRadius: 14,
-            fontSize: 16,
+            fontSize: 'clamp(15px, 4vw, 16px)',
             fontWeight: 700,
             fontFamily: 'Inter, sans-serif',
             cursor: 'pointer',
@@ -303,7 +309,7 @@ export default function LandingPage() {
 
       {/* ── STATS ── */}
       <section style={{
-        padding: '24px 20px',
+        padding: '24px var(--page-x)',
         background: 'var(--violet)',
       }}>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
@@ -333,7 +339,7 @@ export default function LandingPage() {
       </section>
 
       {/* ── SOCIAL PROOF BAR ── */}
-      <section style={{ padding: '20px', background: 'var(--bg)', borderBottom: '1px solid #F0F0F0' }}>
+      <section style={{ padding: '20px var(--page-x)', background: 'var(--bg)', borderBottom: '1px solid #F0F0F0' }}>
         <p style={{ fontSize: 12, color: 'var(--muted)', textAlign: 'center', marginBottom: 12, fontWeight: 500 }}>
           Ils nous font confiance
         </p>
@@ -353,7 +359,7 @@ export default function LandingPage() {
       </section>
 
       {/* ── HOW IT WORKS ── */}
-      <section style={{ padding: '40px 20px' }}>
+      <section style={{ padding: '40px var(--page-x)' }}>
         <div style={{ textAlign: 'center', marginBottom: 28 }}>
           <span style={{
             fontSize: 12,
@@ -413,7 +419,7 @@ export default function LandingPage() {
       </section>
 
       {/* ── CATEGORIES ── */}
-      <section style={{ padding: '32px 20px', background: 'var(--bg)' }}>
+      <section style={{ padding: '32px var(--page-x)', background: 'var(--bg)' }}>
         <h2 style={{ fontSize: 20, fontWeight: 800, color: 'var(--text)', marginBottom: 6, letterSpacing: '-0.3px' }}>
           Tout type de problème
         </h2>
@@ -448,7 +454,7 @@ export default function LandingPage() {
       </section>
 
       {/* ── FEATURES ── */}
-      <section style={{ padding: '40px 20px' }}>
+      <section style={{ padding: '40px var(--page-x)' }}>
         <div style={{ textAlign: 'center', marginBottom: 24 }}>
           <span style={{
             fontSize: 12,
@@ -498,7 +504,7 @@ export default function LandingPage() {
       </section>
 
       {/* ── TESTIMONIALS ── */}
-      <section style={{ padding: '40px 20px', background: 'var(--bg)' }}>
+      <section style={{ padding: '40px var(--page-x)', background: 'var(--bg)' }}>
         <div style={{ textAlign: 'center', marginBottom: 24 }}>
           <span style={{
             fontSize: 12,
@@ -570,7 +576,7 @@ export default function LandingPage() {
       </section>
 
       {/* ── PRICING ── */}
-      <section style={{ padding: '40px 20px' }}>
+      <section style={{ padding: '40px var(--page-x)' }}>
         <div style={{ textAlign: 'center', marginBottom: 24 }}>
           <span style={{
             fontSize: 12,
@@ -595,7 +601,7 @@ export default function LandingPage() {
               background: highlight ? 'var(--violet)' : 'var(--white)',
               border: highlight ? 'none' : '1.5px solid var(--violet-border)',
               borderRadius: 18,
-              padding: '20px',
+              padding: '20px var(--page-x)',
               position: 'relative',
               boxShadow: highlight ? '0 12px 40px rgba(105,65,198,0.35)' : '0 2px 12px rgba(105,65,198,0.06)',
             }}>
@@ -677,7 +683,7 @@ export default function LandingPage() {
 
       {/* ── FINAL CTA ── */}
       <section style={{
-        padding: '48px 20px 60px',
+        padding: '48px var(--page-x) max(40px, env(safe-area-inset-bottom, 0px))',
         background: 'linear-gradient(180deg, #F4F0FD 0%, #EDE9FC 100%)',
         textAlign: 'center',
       }}>
@@ -742,7 +748,7 @@ export default function LandingPage() {
 
       {/* ── FOOTER ── */}
       <footer style={{
-        padding: '24px 20px',
+        padding: '24px var(--page-x)',
         background: 'var(--text)',
         textAlign: 'center',
       }}>

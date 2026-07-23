@@ -216,7 +216,7 @@ export default function ConseilsScreen() {
   )
 
   return (
-    <div style={{ background: 'var(--bg)', minHeight: '100vh' }}>
+    <div style={{ background: 'var(--bg)', minHeight: '100dvh' }}>
       <TopBar title="Conseils" showMenu />
 
       <div style={{ padding: '16px 0 32px' }}>
