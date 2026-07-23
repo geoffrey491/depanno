@@ -84,7 +84,7 @@ html {
 
 body {
   font-family: 'Inter', sans-serif;
-  background: var(--bg);
+  background: #FFFFFF;
   color: var(--dark);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -98,6 +98,26 @@ body {
   overflow-x: hidden;
   margin: 0;
   padding: 0;
+}
+
+/* Bandes blanches fixe : status bar (haut) + home indicator (bas) */
+body::before,
+body::after {
+  content: '';
+  position: fixed;
+  left: 0;
+  right: 0;
+  background: #FFFFFF;
+  z-index: 10000;
+  pointer-events: none;
+}
+body::before {
+  top: 0;
+  height: env(safe-area-inset-top, 0px);
+}
+body::after {
+  bottom: 0;
+  height: env(safe-area-inset-bottom, 0px);
 }
 
 /* Remove tap highlight on all interactive elements */
@@ -153,14 +173,14 @@ img, svg, video, canvas {
   html, body, #root, .app-shell {
     min-height: 100dvh;
     height: 100%;
-    background: var(--bg);
+    background: #FFFFFF;
   }
 }
 
 /* Desktop large uniquement : colonne centrée (pas sur mobile/navigateur téléphone) */
 @media (min-width: 768px) {
   body {
-    background: var(--bg-subtle);
+    background: #FFFFFF;
   }
   #root {
     align-items: center;
@@ -429,10 +449,10 @@ img, svg, video, canvas {
   justify-content: space-between;
   height: 58px;
   padding: 0 16px;
-  padding-top: env(safe-area-inset-top);
-  background: rgba(255,255,255,0.97);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  padding-top: env(safe-area-inset-top, 0px);
+  background: #FFFFFF;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
   border-bottom: 1px solid var(--violet-border);
   position: sticky;
   top: 0;

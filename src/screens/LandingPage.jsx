@@ -164,9 +164,9 @@ export default function LandingPage() {
         position: 'sticky',
         top: 0,
         zIndex: 100,
-        background: 'rgba(255,255,255,0.95)',
-        backdropFilter: 'blur(12px)',
-        WebkitBackdropFilter: 'blur(12px)',
+        background: '#FFFFFF',
+        backdropFilter: 'none',
+        WebkitBackdropFilter: 'none',
         borderBottom: '1px solid var(--violet-border)',
         padding: '0 var(--page-x)',
         paddingTop: 'env(safe-area-inset-top, 0px)',
@@ -749,22 +749,24 @@ export default function LandingPage() {
       {/* ── FOOTER ── */}
       <footer style={{
         padding: '24px var(--page-x)',
-        background: 'var(--text)',
+        paddingBottom: 'max(24px, env(safe-area-inset-bottom, 0px))',
+        background: '#FFFFFF',
         textAlign: 'center',
+        borderTop: '1px solid var(--violet-border)',
       }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, marginBottom: 8 }}>
           <img src="/icon-depanno.png" alt="" style={{ height: 30, objectFit: 'contain' }} />
-          <img src="/logo-depanno.png" alt="Depanno" style={{ height: 24, objectFit: 'contain', filter: 'brightness(0) invert(1)' }} />
+          <img src="/logo-depanno.png" alt="Depanno" style={{ height: 24, objectFit: 'contain' }} />
         </div>
-        <p style={{ fontSize: 12, color: '#6B7280', lineHeight: 1.6, marginBottom: 14 }}>
+        <p style={{ fontSize: 12, color: 'var(--muted)', lineHeight: 1.6, marginBottom: 14 }}>
           L'IA qui vous protège des arnaques
         </p>
         <div style={{ display: 'flex', justifyContent: 'center', gap: 20, marginBottom: 16, flexWrap: 'wrap' }}>
           {['CGU', 'Confidentialité', 'Contact', 'À propos'].map(link => (
-            <span key={link} style={{ fontSize: 12, color: '#6B7280', cursor: 'pointer' }}>{link}</span>
+            <span key={link} style={{ fontSize: 12, color: 'var(--muted)', cursor: 'pointer' }}>{link}</span>
           ))}
         </div>
-        <p style={{ fontSize: 11, color: '#4B5563' }}>© 2026 Depanno · Tous droits réservés</p>
+        <p style={{ fontSize: 11, color: 'var(--muted-light)' }}>© 2026 Depanno · Tous droits réservés</p>
       </footer>
 
     </div>

@@ -21,7 +21,7 @@ export default defineConfig({
         name: 'Depanno',
         short_name: 'Depanno',
         description: "L'IA qui diagnostique vos problèmes et vous protège des devis abusifs",
-        theme_color: '#6941C6',
+        theme_color: '#FFFFFF',
         background_color: '#FFFFFF',
         display: 'standalone',
         display_override: ['standalone', 'fullscreen', 'minimal-ui'],

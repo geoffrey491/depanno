@@ -351,8 +351,8 @@ export default function ExpertChatScreen() {
         display: 'flex', alignItems: 'center', gap: 10,
         padding: '12px var(--page-x) 10px',
         paddingTop: 'max(12px, env(safe-area-inset-top, 0px))',
-        background: 'rgba(255,255,255,0.97)', backdropFilter: 'blur(14px)',
-        WebkitBackdropFilter: 'blur(14px)',
+        background: '#FFFFFF', backdropFilter: 'none',
+        WebkitBackdropFilter: 'none',
         borderBottom: '1px solid var(--violet-border)',
         position: 'sticky', top: 0, zIndex: 50, flexShrink: 0,
         width: '100%', boxSizing: 'border-box',
@@ -476,8 +476,8 @@ export default function ExpertChatScreen() {
       {/* ── Zone de saisie ── */}
       <div style={{
         padding: '10px var(--page-x) max(16px, env(safe-area-inset-bottom, 0px))',
-        background: 'rgba(255,255,255,0.97)', backdropFilter: 'blur(14px)',
-        WebkitBackdropFilter: 'blur(14px)',
+        background: '#FFFFFF', backdropFilter: 'none',
+        WebkitBackdropFilter: 'none',
         borderTop: '1px solid var(--violet-border)', flexShrink: 0,
         width: '100%', boxSizing: 'border-box',
       }}>
