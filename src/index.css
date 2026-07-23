@@ -76,24 +76,28 @@
 
 html {
   scroll-behavior: smooth;
-  /* Prevent iOS text size adjustment */
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
+  height: 100%;
+  width: 100%;
 }
 
 body {
   font-family: 'Inter', sans-serif;
-  background: var(--bg-subtle);
+  background: var(--bg);
   color: var(--dark);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: var(--font-base);
   line-height: 1.5;
   overscroll-behavior: none;
+  height: 100%;
+  width: 100%;
   min-height: 100dvh;
   min-height: -webkit-fill-available;
   overflow-x: hidden;
-  width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 /* Remove tap highlight on all interactive elements */
@@ -112,29 +116,55 @@ img, svg, video, canvas {
   height: auto;
 }
 
-/* ─── SHELL — pleine largeur téléphone, centré desktop ── */
+/* ─── SHELL — plein écran navigateur + PWA ───────── */
 #root {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: stretch;
+  align-items: stretch;
+  min-height: 100%;
   min-height: 100dvh;
   min-height: -webkit-fill-available;
   width: 100%;
+  max-width: 100%;
   overflow-x: hidden;
+  flex: 1;
 }
 
 .app-shell {
   width: 100%;
   max-width: 100%;
+  flex: 1;
+  min-height: 100%;
   min-height: 100dvh;
   min-height: -webkit-fill-available;
   background: var(--bg);
   position: relative;
   overflow-x: hidden;
   box-shadow: none;
+  display: flex;
+  flex-direction: column;
 }
 
-/* Tablette / desktop : colonne centrée type app */
-@media (min-width: 481px) {
+/* Mode installé (PWA standalone / fullscreen) */
+@media all and (display-mode: standalone),
+       all and (display-mode: fullscreen),
+       all and (display-mode: minimal-ui) {
+  html, body, #root, .app-shell {
+    min-height: 100dvh;
+    height: 100%;
+    background: var(--bg);
+  }
+}
+
+/* Desktop large uniquement : colonne centrée (pas sur mobile/navigateur téléphone) */
+@media (min-width: 768px) {
+  body {
+    background: var(--bg-subtle);
+  }
+  #root {
+    align-items: center;
+  }
   .app-shell {
     max-width: var(--shell-max);
     box-shadow: 0 0 60px rgba(60, 20, 120, 0.14);
@@ -148,18 +178,28 @@ img, svg, video, canvas {
   background: var(--bg);
   width: 100%;
   overflow-x: hidden;
+  flex: 1;
 }
 
-/* Zones chat / plein écran flex */
+/* Zones chat / plein écran flex — hauteur viewport réelle */
 .screen-chat {
   display: flex;
   flex-direction: column;
   height: 100dvh;
   height: 100svh;
   max-height: 100dvh;
+  min-height: 0;
   overflow: hidden;
   background: var(--bg);
   width: 100%;
+  flex: 1;
+}
+
+@supports (height: 100dvh) {
+  .screen-chat {
+    height: 100dvh;
+    max-height: 100dvh;
+  }
 }
 
 .page-pad {
@@ -180,7 +220,7 @@ img, svg, video, canvas {
 }
 
 /* Grands téléphones */
-@media (min-width: 414px) and (max-width: 480px) {
+@media (min-width: 414px) and (max-width: 767px) {
   :root {
     --page-x: 22px;
   }

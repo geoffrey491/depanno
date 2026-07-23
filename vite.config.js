@@ -7,35 +7,55 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['favicon.svg', 'icon-192.png', 'icon-512.png', 'og-image.png'],
+      injectRegister: false,
+      includeAssets: [
+        'favicon.svg',
+        'icon-depanno.png',
+        'logo-depanno.png',
+        'icon-192.png',
+        'icon-512.png',
+        'og-image.png',
+      ],
       manifest: {
+        id: '/',
         name: 'Depanno',
         short_name: 'Depanno',
         description: "L'IA qui diagnostique vos problèmes et vous protège des devis abusifs",
         theme_color: '#6941C6',
-        background_color: '#FDFAF6',
+        background_color: '#FFFFFF',
         display: 'standalone',
+        display_override: ['standalone', 'fullscreen', 'minimal-ui'],
         orientation: 'portrait-primary',
         lang: 'fr',
+        dir: 'ltr',
         start_url: '/',
         scope: '/',
+        categories: ['utilities', 'productivity', 'lifestyle'],
         icons: [
           {
             src: '/icon-192.png',
             sizes: '192x192',
             type: 'image/png',
-            purpose: 'any maskable',
+            purpose: 'any',
           },
           {
             src: '/icon-512.png',
             sizes: '512x512',
             type: 'image/png',
-            purpose: 'any maskable',
+            purpose: 'any',
+          },
+          {
+            src: '/icon-depanno.png',
+            sizes: '512x512',
+            type: 'image/png',
+            purpose: 'maskable',
           },
         ],
       },
       workbox: {
-        globPatterns: ['**/*.{js,css,html,ico,png,svg,woff2}'],
+        globPatterns: ['**/*.{js,css,html,ico,png,svg,woff2,webp}'],
+        navigateFallback: '/index.html',
+        navigateFallbackDenylist: [/^\/api/],
         runtimeCaching: [
           {
             urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,
@@ -78,7 +98,7 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: (id) => {
-          if (id.includes('react') || id.includes('react-dom') || id.includes('react-router-dom')) return 'vendor'
+          if (id.includes('node_modules/react') || id.includes('react-dom') || id.includes('react-router')) return 'vendor'
           if (id.includes('@supabase')) return 'supabase'
           if (id.includes('lucide-react')) return 'icons'
         },

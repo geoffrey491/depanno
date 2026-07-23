@@ -5,19 +5,25 @@
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="/icon-depanno.png" />
-    <link rel="apple-touch-icon" href="/icon-depanno.png" />
+    <link rel="apple-touch-icon" href="/icon-depanno.png" sizes="180x180" />
 
-    <!-- Viewport & PWA display -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, minimum-scale=1.0, maximum-scale=1.0" />
+    <!-- Viewport plein écran (navigateur + PWA installée) -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <!-- PWA / iOS -->
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="Depanno" />
+    <meta name="application-name" content="Depanno" />
+    <meta name="format-detection" content="telephone=no" />
 
-    <!-- Theme color -->
-    <meta name="theme-color" content="#6941C6" />
+    <!-- Theme color (barre navigateur) -->
+    <meta name="theme-color" content="#6941C6" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#6941C6" media="(prefers-color-scheme: dark)" />
     <meta name="msapplication-navbutton-color" content="#6941C6" />
-    <meta name="msapplication-TileColor" content="#1A1523" />
+    <meta name="msapplication-TileColor" content="#6941C6" />
+    <meta name="msapplication-TileImage" content="/icon-192.png" />
 
     <!-- SEO -->
     <title>Depanno — Diagnostics IA pour vos réparations</title>
@@ -26,7 +32,7 @@
     <meta name="author" content="Depanno" />
     <meta name="robots" content="index, follow" />
 
-    <!-- Open Graph / Partage réseaux sociaux -->
+    <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Depanno — Ne payez plus trop cher pour vos réparations" />
     <meta property="og:description" content="L'IA qui diagnostique vos problèmes en 3 minutes et vous protège des devis abusifs." />
@@ -41,20 +47,42 @@
     <meta name="twitter:description" content="Prenez une photo. On vous dit quoi faire et combien ça doit coûter." />
     <meta name="twitter:image" content="/og-image.png" />
 
-    <!-- PWA Manifest -->
+    <!-- Manifest (fallback ; VitePWA injecte aussi le sien au build) -->
     <link rel="manifest" href="/manifest.json" />
 
-    <!-- Preconnect pour performances -->
+    <!-- Preconnect -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@600;700&display=swap" rel="stylesheet" />
 
-    <!-- Splash screen background (avant React) -->
+    <!-- Splash / plein écran avant React -->
     <style>
-      html, body { margin: 0; padding: 0; background: #F7F4FD; width: 100%; overflow-x: hidden; }
-      #root { min-height: 100dvh; width: 100%; }
+      html {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        background: #FFFFFF;
+        -webkit-text-size-adjust: 100%;
+      }
+      body {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        background: #FFFFFF;
+        overflow-x: hidden;
+        overscroll-behavior: none;
+      }
+      #root {
+        min-height: 100%;
+        min-height: 100dvh;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+      }
     </style>
   </head>
   <body>
